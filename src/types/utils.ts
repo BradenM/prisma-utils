@@ -1,5 +1,10 @@
 import { KeyFor, XOR } from '@prisma-model-types/shared'
-import { ModelInterfaces, ModelName, PrismaTypes } from './types'
+import {
+  ModelInterfaces,
+  ModelName,
+  PrismaPayloadTypes,
+  PrismaTypes
+} from './types'
 
 /**
  * Take model name (as string) or model interface exclusively.
@@ -37,3 +42,9 @@ export type FindManyArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
   'FindManyArgs'
 >
+
+export type PayloadFor<
+  T extends ModelNameOrModel,
+  S extends ArgsFor<NameForModel<T>> = ArgsFor<NameForModel<T>>,
+  _T = NameForModel<T>
+> = _T extends keyof PrismaPayloadTypes<S> ? PrismaPayloadTypes<S>[_T] : never
