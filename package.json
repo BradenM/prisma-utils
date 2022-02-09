@@ -1,0 +1,46 @@
+{
+  "name": "prisma-model-types",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BradenM/prisma-utils",
+    "directory": "packages/models"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "author": "Braden Mars <bradenmars@bradenmars.me>",
+  "homepage": "https://github.com/BradenM/prisma-model-types/tree/main/packages/models/README.md",
+  "bugs": {
+    "url": "https://github.com/BradenM/prisma-model-types/issues"
+  },
+  "scripts": {
+    "dev": "nr build:prisma && unbuild --stub",
+    "build": "nr build:prisma && unbuild",
+    "build:prisma": "nr build:prisma:schema && pnpm exec prisma generate",
+    "build:prisma:schema": "nr format:prisma:base && esmo ../../scripts/buildSchema.ts --schemaPath prisma/base.prisma && nr format:prisma",
+    "format:prisma": "pnpm exec prisma format",
+    "format:prisma:base": "pnpm exec prisma format --schema prisma/base.prisma",
+    "test": "echo \"Error: no test specified\"",
+    "prepublishOnly": "nr build"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.9.1",
+    "mlly": "^0.4.1",
+    "prisma": "^3.9.1"
+  }
+}
