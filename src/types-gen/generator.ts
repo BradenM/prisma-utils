@@ -41,18 +41,24 @@ const createInterface = (
   models: DMMF.Model[],
   enums: DMMF.DatamodelEnum[]
 ): string => {
+  // Workaround interface for namespace issue.
   const modelNames = models
     .map(({ name }) => name)
     .sort((a, b) => b.length - a.length)
   const interfaceNames = ['CreateInput', 'FindManyArgs', 'Args']
-
   const lines = new Set()
+
   modelNames.forEach((n) => {
     interfaceNames.forEach((i) => lines.add(`  ${n}${i}: Prisma.${n}${i}`))
   })
 
+  // Model map.
+  const modelMap = modelNames.map((n) => ` ${n}: ${n}`)
+
+  // Model enum util.
   const modelEnum = modelNames.map((n) => `  ${n} = '${n}'`)
 
+  // Schema `enum` objects.
   const enumNames = enums.map(({ name }) => name)
   const enumLines = enumNames.map((n) => `export const ${n}s = pkg.${n}`)
 
@@ -75,6 +81,17 @@ ${modelEnum.join(',\n')}
 
 // Enums
 ${enumLines.join('\n')}
+
+
+/**
+ * Model Map.
+ * Useful for mapping model interfaces <-> model name (among other things).
+ * @see - https://stackoverflow.com/a/53431302/2666223
+ */
+export interface ModelInterfaces {
+${modelMap.join('\n')}
+}
+
 
 export { ${typeImports.join(', ')} }
 
