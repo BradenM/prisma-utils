@@ -51,6 +51,8 @@ const createInterface = (
     interfaceNames.forEach((i) => lines.add(`  ${n}${i}: Prisma.${n}${i}`))
   })
 
+  const modelEnum = modelNames.map((n) => `  ${n} = '${n}'`)
+
   const enumNames = enums.map(({ name }) => name)
   const enumLines = enumNames.map((n) => `export const ${n}s = pkg.${n}`)
 
@@ -62,6 +64,14 @@ import pkg from '@prisma/client'
 
 export const ModelNames = pkg.Prisma.ModelName
 export type ModelName = Prisma.ModelName
+
+// Helper enum of Model names. 
+// Just allows for:
+// SomeType<Model.User> instead of:
+// SomeType<'User'> or SomeType<typeof Models.User>
+export enum Model {
+${modelEnum.join(',\n')}
+}
 
 // Enums
 ${enumLines.join('\n')}
