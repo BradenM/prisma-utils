@@ -52,6 +52,9 @@ const createInterface = (
     interfaceNames.forEach((i) => lines.add(`  ${n}${i}: Prisma.${n}${i}`))
   })
 
+  // Payload Types.
+  const payloadTypes = modelNames.map((n) => `  ${n}: Prisma.${n}GetPayload<S>`)
+
   // Model map.
   const modelMap = modelNames.map((n) => ` ${n}: ${n}`)
 
@@ -99,6 +102,12 @@ export { ${typeImports.join(', ')} }
 export interface PrismaTypes {
 ${Array.from(lines).join('\n')}
 }
+
+// Payload Types
+export interface PrismaPayloadTypes<S> {
+${payloadTypes.join('\n')}
+}
+
 `
   logger.info(interfaceTmpl)
   return interfaceTmpl
