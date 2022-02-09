@@ -31,9 +31,10 @@
   "scripts": {
     "dev": "nr build:prisma && unbuild --stub",
     "build": "nr build:prisma && unbuild",
-    "build:prisma": "nr build:prisma:schema && pnpm exec prisma generate",
+    "build:prisma": "nr build:prisma:schema && pnpm exec prisma generate && nr format:prisma:types",
     "build:prisma:schema": "nr format:prisma:base && esmo ../../scripts/buildSchema.ts --schemaPath prisma/base.prisma && nr format:prisma",
     "format:prisma": "pnpm exec prisma format",
+    "format:prisma:types": "eslint --fix src/types/types.ts && prettier --write src/types/types.ts",
     "format:prisma:base": "pnpm exec prisma format --schema prisma/base.prisma",
     "test": "echo \"Error: no test specified\"",
     "prepublishOnly": "nr build"
