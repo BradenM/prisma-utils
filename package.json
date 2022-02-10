@@ -37,11 +37,13 @@
     "format:prisma:types": "eslint --fix src/types/types.ts && prettier --write src/types/types.ts",
     "format:prisma:base": "pnpm exec prisma format --schema prisma/base.prisma",
     "test": "echo \"Error: no test specified\"",
-    "prepublishOnly": "nr build"
+    "prepublishOnly": "nr build",
+    "studio": "prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^3.9.1",
     "mlly": "^0.4.1",
-    "prisma": "^3.9.1"
+    "prisma": "^3.9.1",
+    "@prisma-model-types/shared": "workspace:../shared"
   }
 }
