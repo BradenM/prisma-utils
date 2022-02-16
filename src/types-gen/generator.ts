@@ -45,7 +45,15 @@ const createInterface = (
   const modelNames = models
     .map(({ name }) => name)
     .sort((a, b) => b.length - a.length)
-  const interfaceNames = ['CreateInput', 'FindManyArgs', 'Args']
+  const interfaceNames = [
+    'CreateInput',
+    'WhereInput',
+    'WhereUniqueInput',
+    'Select',
+    'Include',
+    'FindManyArgs',
+    'Args'
+  ]
   const lines = new Set()
 
   modelNames.forEach((n) => {
