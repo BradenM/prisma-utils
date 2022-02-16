@@ -1,4 +1,5 @@
 import { KeyFor, XOR } from '@prisma-model-types/shared'
+import type { PrismaPromise } from '@prisma/client'
 import {
   ModelInterfaces,
   ModelName,
@@ -38,9 +39,24 @@ export type CreateFor<T extends ModelNameOrModel> = PrismaTypeFor<
   'CreateInput'
 >
 export type ArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<T, 'Args'>
+
 export type FindManyArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
   'FindManyArgs'
+>
+
+export type SelectFor<T extends ModelNameOrModel> = PrismaTypeFor<T, 'Select'>
+
+export type IncludeFor<T extends ModelNameOrModel> = PrismaTypeFor<T, 'Include'>
+
+export type WhereFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'WhereInput'
+>
+
+export type WhereUniqueFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'WhereUniqueInput'
 >
 
 export type PayloadFor<
@@ -48,3 +64,5 @@ export type PayloadFor<
   S extends ArgsFor<NameForModel<T>> = ArgsFor<NameForModel<T>>,
   _T = NameForModel<T>
 > = _T extends keyof PrismaPayloadTypes<S> ? PrismaPayloadTypes<S>[_T] : never
+
+export type { PrismaPromise }
