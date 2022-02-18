@@ -25,6 +25,15 @@ export type NameForModel<ModelT> = ModelT extends ModelName
   : never
 
 /**
+ * Resolve (interface) model from model name or model.
+ */
+export type ModelFromName<ModelOrName> = ModelOrName extends ModelName
+  ? ModelInterfaces[ModelName]
+  : ModelOrName extends ModelInterfaces[keyof ModelInterfaces]
+  ? ModelOrName
+  : never
+
+/**
  * Resolve Prisma args/action/input/output/etc. type for given model.
  */
 export type PrismaTypeFor<
