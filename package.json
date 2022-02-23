@@ -43,8 +43,8 @@
   },
   "dependencies": {
     "@prisma-model-types/shared": "workspace:../shared",
-    "@prisma/client": "^3.9.2",
+    "@prisma/client": "^3.10.0",
     "mlly": "^0.4.3",
-    "prisma": "^3.9.2"
+    "prisma": "^3.10.0"
   }
 }
