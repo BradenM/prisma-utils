@@ -47,6 +47,12 @@ export type CreateFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
   'CreateInput'
 >
+
+export type UpdateFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'UpdateInput'
+>
+
 export type ArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<T, 'Args'>
 
 export type FindManyArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<

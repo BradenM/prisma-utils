@@ -47,6 +47,7 @@ const createInterface = (
     .sort((a, b) => b.length - a.length)
   const interfaceNames = [
     'CreateInput',
+    'UpdateInput',
     'WhereInput',
     'WhereUniqueInput',
     'Select',
