@@ -74,7 +74,7 @@ const createInterface = (
   const enumNames = enums.map(({ name }) => name)
   const enumLines = enumNames.map((n) => `export const ${n}s = pkg.${n}`)
 
-  const typeImports = ['Prisma', ...enumNames, ...modelNames]
+  const typeImports = ['Prisma', 'PrismaClient', ...enumNames, ...modelNames]
 
   const interfaceTmpl = `
 import type { ${typeImports.join(', ')} } from '@prisma/client'
