@@ -1,8 +1,10 @@
 import { KeyFor, XOR } from '@prisma-model-types/shared'
 import type { PrismaPromise } from '@prisma/client'
+import { CamelCase } from 'type-fest'
 import {
   ModelInterfaces,
   ModelName,
+  PrismaClient,
   PrismaPayloadTypes,
   PrismaTypes
 } from './types'
@@ -79,5 +81,10 @@ export type PayloadFor<
   S extends ArgsFor<NameForModel<T>> = ArgsFor<NameForModel<T>>,
   _T = NameForModel<T>
 > = _T extends keyof PrismaPayloadTypes<S> ? PrismaPayloadTypes<S>[_T] : never
+
+export type DelegateFor<
+  T extends ModelNameOrModel,
+  _T = CamelCase<NameForModel<T>>
+> = _T extends keyof PrismaClient ? PrismaClient[_T] : never
 
 export type { PrismaPromise }
