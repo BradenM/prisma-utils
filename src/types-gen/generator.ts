@@ -52,6 +52,8 @@ const createInterface = (
     'WhereUniqueInput',
     'Select',
     'Include',
+    'CreateArgs',
+    'UpdateArgs',
     'FindManyArgs',
     'Args'
   ]
