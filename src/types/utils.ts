@@ -1,10 +1,9 @@
 import { KeyFor, XOR } from '@prisma-model-types/shared'
 import type { PrismaPromise } from '@prisma/client'
-import { CamelCase } from 'type-fest'
+import pkg from '@prisma/client'
 import {
   ModelInterfaces,
   ModelName,
-  PrismaClient,
   PrismaPayloadTypes,
   PrismaTypes
 } from './types'
@@ -56,6 +55,14 @@ export type UpdateFor<T extends ModelNameOrModel> = PrismaTypeFor<
 >
 
 export type ArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<T, 'Args'>
+export type CreateArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'CreateArgs'
+>
+export type UpdateArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'UpdateArgs'
+>
 
 export type FindManyArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
@@ -76,15 +83,20 @@ export type WhereUniqueFor<T extends ModelNameOrModel> = PrismaTypeFor<
   'WhereUniqueInput'
 >
 
+export type DelegateFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'Delegate'
+>
+
+export const validatorFor = <
+  ModelT extends ModelNameOrModel,
+  _ModelArgs = ArgsFor<ModelT>
+>() => pkg.Prisma.validator<_ModelArgs>()
+
 export type PayloadFor<
   T extends ModelNameOrModel,
   S extends ArgsFor<NameForModel<T>> = ArgsFor<NameForModel<T>>,
   _T = NameForModel<T>
 > = _T extends keyof PrismaPayloadTypes<S> ? PrismaPayloadTypes<S>[_T] : never
-
-export type DelegateFor<
-  T extends ModelNameOrModel,
-  _T = CamelCase<NameForModel<T>>
-> = _T extends keyof PrismaClient ? PrismaClient[_T] : never
 
 export type { PrismaPromise }
