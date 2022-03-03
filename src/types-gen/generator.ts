@@ -63,6 +63,14 @@ const createInterface = (
     interfaceNames.forEach((i) => lines.add(`  ${n}${i}: Prisma.${n}${i}`))
   })
 
+  modelNames.forEach((n) =>
+    lines.add(`  ${n}Delegate: Prisma.${n}Delegate<Prisma.RejectOnNotFound>`)
+  )
+
+  const delegateTypes = modelNames.map(
+    (n) => `  ${n}Delegate: Prisma.${n}Delegate<Prisma.RejectOnNotFound>`
+  )
+
   // Payload Types.
   const payloadTypes = modelNames.map((n) => `  ${n}: Prisma.${n}GetPayload<S>`)
 
@@ -118,6 +126,11 @@ ${Array.from(lines).join('\n')}
 export interface PrismaPayloadTypes<S> {
 ${payloadTypes.join('\n')}
 }
+
+// Delegate Tuple
+export type Delegates = [
+${delegateTypes.join(',\n')}
+]
 
 `
   logger.info(interfaceTmpl)

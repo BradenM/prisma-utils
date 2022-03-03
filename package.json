@@ -46,6 +46,7 @@
     "@prisma-model-types/shared": "workspace:../shared",
     "@prisma/client": "^3.10.0",
     "mlly": "^0.4.3",
-    "prisma": "^3.10.0"
+    "prisma": "^3.10.0",
+    "type-fest": "^2.12.0"
   }
 }
