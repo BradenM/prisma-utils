@@ -1,6 +1,7 @@
 import { KeyFor, XOR } from '@prisma-model-types/shared'
 import type { PrismaPromise } from '@prisma/client'
 import pkg from '@prisma/client'
+import { Simplify } from 'type-fest'
 import {
   ModelInterfaces,
   ModelName,
@@ -35,14 +36,28 @@ export type ModelFromName<ModelOrName> = ModelOrName extends ModelName
   : never
 
 /**
+ * Create a stricter subset of Prisma types based on given parameters.
+ */
+export type _PrismaSubset<
+  Name extends string,
+  Model extends string = string
+> = {
+  [K in Extract<keyof PrismaTypes, `${Model}${Name}`>]: PrismaTypes[K]
+}
+
+/**
  * Resolve Prisma args/action/input/output/etc. type for given model.
  */
 export type PrismaTypeFor<
   ModelT,
   Name extends string,
-  _Model = NameForModel<ModelT>,
+  _Model extends string = NameForModel<ModelT>,
   _T = _Model extends string ? `${_Model}${Name}` : never
-> = _T extends keyof PrismaTypes ? PrismaTypes[_T] : never
+> = Simplify<
+  _T extends keyof _PrismaSubset<Name, _Model>
+    ? _PrismaSubset<Name, _Model>[_T]
+    : never
+>
 
 export type CreateFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
