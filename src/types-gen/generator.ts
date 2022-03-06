@@ -52,10 +52,14 @@ const createInterface = (
     'WhereUniqueInput',
     'Select',
     'Include',
+    'Args',
     'CreateArgs',
     'UpdateArgs',
+    'UpsertArgs',
+    'FindUniqueArgs',
+    'FindFirstArgs',
     'FindManyArgs',
-    'Args'
+    'DeleteArgs'
   ]
   const lines = new Set()
 
