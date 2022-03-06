@@ -129,7 +129,7 @@ export const validatorFor = <
 
 export type PayloadFor<
   T extends ModelNameOrModel,
-  S extends ArgsFor<NameForModel<T>> = ArgsFor<NameForModel<T>>,
+  S = ArgsFor<NameForModel<T>>,
   _T = NameForModel<T>
 > = _T extends keyof PrismaPayloadTypes<S> ? PrismaPayloadTypes<S>[_T] : never
 
