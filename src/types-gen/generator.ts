@@ -67,9 +67,13 @@ const createInterface = (
     lines.add(`  ${n}Delegate: Prisma.${n}Delegate<Prisma.RejectOnNotFound>`)
   )
 
+  // Delegate Types.
   const delegateTypes = modelNames.map(
     (n) => `  ${n}Delegate: Prisma.${n}Delegate<Prisma.RejectOnNotFound>`
   )
+
+  // Model str names.
+  const modelStrNames = modelNames.map((n) => `"${n}"`)
 
   // Payload Types.
   const payloadTypes = modelNames.map((n) => `  ${n}: Prisma.${n}GetPayload<S>`)
@@ -92,6 +96,8 @@ import pkg from '@prisma/client'
 
 export const ModelNames = pkg.Prisma.ModelName
 export type ModelName = Prisma.ModelName
+
+export type ModelNamesTuple = [${modelStrNames.join(', ')}]
 
 // Helper enum of Model names. 
 // Just allows for:
