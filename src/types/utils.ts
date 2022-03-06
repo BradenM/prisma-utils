@@ -1,8 +1,7 @@
-import { KeyFor, XOR } from '@prisma-model-types/shared'
+import type { KeyFor, XOR } from '@prisma-model-types/shared'
 import type { PrismaPromise } from '@prisma/client'
 import pkg from '@prisma/client'
-import { Simplify } from 'type-fest'
-import {
+import type {
   ModelInterfaces,
   ModelName,
   PrismaPayloadTypes,
@@ -72,11 +71,9 @@ export type PrismaTypeFor<
   Name extends string,
   _Model extends string = NameForModel<ModelT>,
   _T = _Model extends string ? `${_Model}${Name}` : never
-> = Simplify<
-  _T extends keyof _PrismaSubset<Name, _Model>
-    ? _PrismaSubset<Name, _Model>[_T]
-    : never
->
+> = _T extends keyof _PrismaSubset<Name, _Model>
+  ? _PrismaSubset<Name, _Model>[_T]
+  : never
 
 export type CreateFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
