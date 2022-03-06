@@ -18,6 +18,25 @@ export type ModelNameOrModel = XOR<
 >
 
 /**
+ * Generic Prisma model delegate type.
+ */
+export interface Delegate<T = any> {
+  findMany(...args: any[]): Promise<T>
+
+  findFirst(...args: any[]): Promise<T>
+
+  findUnique(...args: any[]): Promise<T>
+
+  create(...args: any[]): Promise<T>
+
+  update(...args: any[]): Promise<T>
+
+  upsert(...args: any[]): Promise<T>
+
+  delete(...args: any[]): Promise<T>
+}
+
+/**
  * Resolve (string) name from model name or model interface.
  */
 export type NameForModel<ModelT> = ModelT extends ModelName
