@@ -98,9 +98,24 @@ export type UpdateArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
   'UpdateArgs'
 >
 
+export type UpsertArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'UpsertArgs'
+>
+
 export type FindManyArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
   'FindManyArgs'
+>
+
+export type FindFirstArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'FindFindArgs'
+>
+
+export type FindUniqueArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
+  T,
+  'FindUniqueArgs'
 >
 
 export type SelectFor<T extends ModelNameOrModel> = PrismaTypeFor<T, 'Select'>
