@@ -38,7 +38,7 @@
     "format:prisma": "pnpm exec prisma format",
     "format:prisma:types": "eslint --fix src/types/types.ts && prettier --write src/types/types.ts",
     "format:prisma:base": "pnpm exec prisma format --schema prisma/base.prisma",
-    "test": "nr dev:build && echo \"Error: no test specified\"",
+    "test": "echo \"Error: no test specified\"",
     "prepublishOnly": "nr build",
     "studio": "prisma studio"
   },
