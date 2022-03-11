@@ -1,6 +1,8 @@
 {
   "name": "prisma-model-types",
+  "type": "module",
   "version": "0.1.0",
+  "author": "Braden Mars <bradenmars@bradenmars.me>",
   "repository": {
     "type": "git",
     "url": "https://github.com/BradenM/prisma-utils",
@@ -10,20 +12,18 @@
     "registry": "https://npm.pkg.github.com",
     "access": "restricted"
   },
-  "author": "Braden Mars <bradenmars@bradenmars.me>",
-  "type": "module",
-  "sideEffects": false,
-  "files": [
-    "dist"
-  ],
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     }
   },
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
   "homepage": "https://github.com/BradenM/prisma-model-types/tree/main/packages/models/README.md",
   "bugs": {
     "url": "https://github.com/BradenM/prisma-model-types/issues"
