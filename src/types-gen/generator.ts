@@ -143,7 +143,6 @@ ${delegateTypes.join(',\n')}
 ]
 
 `
-  logger.info(interfaceTmpl)
   return interfaceTmpl
 }
 
