@@ -40,7 +40,7 @@
     "format:prisma:base": "pnpm exec prisma format --schema prisma/base.prisma",
     "test": "echo \"Error: no test specified\"",
     "prepublishOnly": "nr build",
-    "studio": "prisma studio"
+    "studio": "BROWSER=none prisma studio"
   },
   "dependencies": {
     "@prisma-model-types/shared": "workspace:../shared",
