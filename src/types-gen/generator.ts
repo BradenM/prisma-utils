@@ -1,11 +1,11 @@
 import path from 'node:path'
-import {
+import type {
   DMMF,
   GeneratorConfig,
   GeneratorManifest,
-  GeneratorOptions,
-  generatorHandler
+  GeneratorOptions
 } from '@prisma/generator-helper'
+import { generatorHandler } from '@prisma/generator-helper'
 import sdk from '@prisma/sdk'
 import fse from 'fs-extra'
 
