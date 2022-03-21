@@ -31,7 +31,7 @@
   "scripts": {
     "dev": "esmo ../../scripts/watchSchema.ts --watch",
     "dev:build": "esmo ../../scripts/watchSchema.ts",
-    "dev:build:force": "nr build:prisma && unbuild --stub",
+    "dev:build:force": "nr build:prisma && unbuild",
     "build": "nr build:prisma && unbuild",
     "build:prisma": "nr build:prisma:schema && pnpm exec prisma generate && nr format:prisma:types",
     "build:prisma:schema": "nr format:prisma:base && esmo ../../scripts/buildSchema.ts --schemaPath prisma/base.prisma && nr format:prisma",
