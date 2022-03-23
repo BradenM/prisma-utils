@@ -1,20 +1,27 @@
-import type { KeyFor, XOR } from '@prisma-model-types/shared'
+import type { KeyFor } from '@prisma-model-types/shared'
 import type { PrismaPromise } from '@prisma/client'
 import pkg from '@prisma/client'
 import type {
+  Model,
   ModelInterfaces,
   ModelName,
   PrismaPayloadTypes,
   PrismaTypes
 } from './types'
 
+export interface AnyModel {
+  id?: string
+  dateCreated?: Date | string
+  dateUpdated?: Date | string
+  dateInvalidated?: Date | string | null
+
+  [key: string]: unknown
+}
+
 /**
  * Take model name (as string) or model interface exclusively.
  */
-export type ModelNameOrModel = XOR<
-  ModelName,
-  ModelInterfaces[keyof ModelInterfaces]
->
+export type ModelNameOrModel = ModelName | Model | AnyModel
 
 /**
  * Generic Prisma model delegate type.
@@ -50,7 +57,7 @@ export type NameForModel<ModelT> = ModelT extends ModelName
 export type ModelFromName<ModelOrName> = ModelOrName extends ModelName
   ? ModelInterfaces[ModelName]
   : ModelOrName extends ModelInterfaces[keyof ModelInterfaces]
-  ? ModelOrName
+  ? ModelInterfaces[NameForModel<ModelOrName>]
   : never
 
 /**
