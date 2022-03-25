@@ -61,26 +61,25 @@ const createInterface = (
     'FindManyArgs',
     'DeleteArgs'
   ]
-  const lines = new Set()
 
-  modelNames.forEach((n) => {
-    interfaceNames.forEach((i) => lines.add(`  ${n}${i}: Prisma.${n}${i}`))
-  })
-
-  modelNames.forEach((n) =>
-    lines.add(`  ${n}Delegate: Prisma.${n}Delegate<Prisma.RejectOnNotFound>`)
+  // Per-model parameters interface.
+  const modelParams = modelNames.map(
+    (mname) => `export interface ${mname}Params {
+    model: "${mname}"
+${interfaceNames
+  .map((iname) => `  ${iname}: Prisma.${mname}${iname}`)
+  .join('\n')}
+    Delegate: Prisma.${mname}Delegate<Prisma.RejectOnNotFound | Prisma.RejectPerOperation>
+}`
   )
 
-  // Delegate Types.
-  const delegateTypes = modelNames.map(
-    (n) => `  ${n}Delegate: Prisma.${n}Delegate<Prisma.RejectOnNotFound>`
+  // Per model payload interface.
+  const modelPayloadParams = modelNames.map(
+    (mname) => `export interface ${mname}PayloadParams<T> {
+    model: "${mname}"
+    Payload: Prisma.${mname}GetPayload<T>
+}`
   )
-
-  // Model str names.
-  const modelStrNames = modelNames.map((n) => `"${n}"`)
-
-  // Payload Types.
-  const payloadTypes = modelNames.map((n) => `  ${n}: Prisma.${n}GetPayload<S>`)
 
   // Model map.
   const modelMap = modelNames.map((n) => ` ${n}: ${n}`)
@@ -94,6 +93,7 @@ const createInterface = (
 
   const typeImports = ['Prisma', 'PrismaClient', ...enumNames, ...modelNames]
 
+  // language=typescript
   const interfaceTmpl = `
 import type { ${typeImports.join(', ')} } from '@prisma/client'
 import pkg from '@prisma/client'
@@ -101,7 +101,41 @@ import pkg from '@prisma/client'
 export const ModelNames = pkg.Prisma.ModelName
 export type ModelName = Prisma.ModelName
 
-export type ModelNamesTuple = [${modelStrNames.join(', ')}]
+// Base interface matching any model delegate.
+export type ModelDelegate = { [key in Prisma.PrismaAction]?: (...args: any[]) => any }
+
+
+// Base interface for model params.
+export interface ModelParams {
+    model: ModelName
+${interfaceNames.map((n) => `  ${n}: any`)}  
+    Delegate: ModelDelegate
+}
+
+
+${modelParams.join('\n\n')}
+
+
+// All model params keyed by model.
+export interface ParamsByModel {
+${modelNames.map((mname) => `  ${mname}: ${mname}Params`)}
+}
+
+
+// Base interface for model payload params.
+export interface ModelPayloadParams {
+  model: ModelName
+  Payload: any
+}
+
+
+${modelPayloadParams.join('\n\n')}
+
+
+// All Payload params types keyed by model. 
+export interface PayloadParamsByModel<T> {
+${modelNames.map((mname) => `  ${mname}: ${mname}PayloadParams<T>`)}
+}
 
 // Helper enum of Model names. 
 // Just allows for:
@@ -126,21 +160,6 @@ ${modelMap.join('\n')}
 
 
 export { ${typeImports.join(', ')} }
-
-// Models
-export interface PrismaTypes {
-${Array.from(lines).join('\n')}
-}
-
-// Payload Types
-export interface PrismaPayloadTypes<S> {
-${payloadTypes.join('\n')}
-}
-
-// Delegate Tuple
-export type Delegates = [
-${delegateTypes.join(',\n')}
-]
 
 `
   return interfaceTmpl
