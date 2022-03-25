@@ -1,12 +1,12 @@
 import type { KeyFor } from '@prisma-model-types/shared'
 import type { PrismaPromise } from '@prisma/client'
 import pkg from '@prisma/client'
+import type * as ModelTypes from './types'
 import type {
-  Model,
   ModelInterfaces,
   ModelName,
-  PrismaPayloadTypes,
-  PrismaTypes
+  ParamsByModel,
+  PayloadParamsByModel
 } from './types'
 
 export interface AnyModel {
@@ -15,13 +15,19 @@ export interface AnyModel {
   dateUpdated?: Date | string
   dateInvalidated?: Date | string | null
 
-  [key: string]: unknown
+  [key: string]: any
 }
 
 /**
  * Take model name (as string) or model interface exclusively.
  */
-export type ModelNameOrModel = ModelName | Model | AnyModel
+export type ModelNameOrModel = ModelName | AnyModel
+
+export type IsAnyModelOrModelName<T> = [ModelNameOrModel] extends [T]
+  ? 1
+  : [ModelName] extends [T]
+  ? 1
+  : 0
 
 /**
  * Generic Prisma model delegate type.
@@ -45,7 +51,9 @@ export interface Delegate<T = any> {
 /**
  * Resolve (string) name from model name or model interface.
  */
-export type NameForModel<ModelT> = ModelT extends ModelName
+export type NameForModel<ModelT> = IsAnyModelOrModelName<ModelT> extends 1
+  ? ModelName
+  : ModelT extends ModelName
   ? ModelT
   : ModelT extends ModelInterfaces[keyof ModelInterfaces]
   ? KeyFor<ModelInterfaces, ModelT>
@@ -54,33 +62,36 @@ export type NameForModel<ModelT> = ModelT extends ModelName
 /**
  * Resolve (interface) model from model name or model.
  */
-export type ModelFromName<ModelOrName> = ModelOrName extends ModelName
-  ? ModelInterfaces[ModelName]
-  : ModelOrName extends ModelInterfaces[keyof ModelInterfaces]
-  ? ModelInterfaces[NameForModel<ModelOrName>]
-  : never
-
-/**
- * Create a stricter subset of Prisma types based on given parameters.
- */
-export type _PrismaSubset<
-  Name extends string,
-  Model extends string = string
-> = {
-  [K in Extract<keyof PrismaTypes, `${Model}${Name}`>]: PrismaTypes[K]
-}
+export type ModelFromName<ModelOrName> =
+  IsAnyModelOrModelName<ModelOrName> extends 1
+    ? AnyModel
+    : ModelOrName extends ModelName
+    ? ModelInterfaces[ModelName]
+    : ModelOrName extends ModelInterfaces[keyof ModelInterfaces]
+    ? ModelInterfaces[NameForModel<ModelOrName>]
+    : never
 
 /**
  * Resolve Prisma args/action/input/output/etc. type for given model.
  */
 export type PrismaTypeFor<
   ModelT,
-  Name extends string,
-  _Model extends string = NameForModel<ModelT>,
-  _T = _Model extends string ? `${_Model}${Name}` : never
-> = _T extends keyof _PrismaSubset<Name, _Model>
-  ? _PrismaSubset<Name, _Model>[_T]
-  : never
+  Name extends keyof ModelTypes.ModelParams,
+  _Model extends string = NameForModel<ModelT>
+> = IsAnyModelOrModelName<ModelT> extends 1
+  ? ModelTypes.ModelParams[Name]
+  : _Model extends keyof ParamsByModel
+  ? ParamsByModel[_Model][Name]
+  : ModelTypes.ModelParams[Name]
+
+export type ModelParamsFor<
+  ModelT,
+  _Model = NameForModel<ModelT>
+> = IsAnyModelOrModelName<ModelT> extends 1
+  ? ModelTypes.ModelParams
+  : _Model extends keyof ParamsByModel
+  ? ParamsByModel[_Model]
+  : ModelTypes.ModelParams
 
 export type CreateFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
@@ -114,7 +125,7 @@ export type FindManyArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
 
 export type FindFirstArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
   T,
-  'FindFindArgs'
+  'FindFirstArgs'
 >
 
 export type FindUniqueArgsFor<T extends ModelNameOrModel> = PrismaTypeFor<
@@ -146,10 +157,17 @@ export const validatorFor = <
   _ModelArgs = ArgsFor<ModelT>
 >() => pkg.Prisma.validator<_ModelArgs>()
 
+/**
+ * Resolve Prisma args/action/input/output/etc. type for given model.
+ */
 export type PayloadFor<
-  T extends ModelNameOrModel,
-  S = ArgsFor<NameForModel<T>>,
-  _T = NameForModel<T>
-> = _T extends keyof PrismaPayloadTypes<S> ? PrismaPayloadTypes<S>[_T] : never
+  ModelT extends ModelNameOrModel,
+  T extends ArgsFor<ModelT> | any = undefined,
+  _Model extends string = NameForModel<ModelT>
+> = IsAnyModelOrModelName<ModelT> extends 1
+  ? ModelTypes.ModelPayloadParams['Payload']
+  : _Model extends keyof PayloadParamsByModel<any>
+  ? PayloadParamsByModel<T>[_Model]['Payload']
+  : ModelTypes.ModelPayloadParams['Payload']
 
 export type { PrismaPromise }
