@@ -2,9 +2,10 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "composite": false,
-    "rootDir": "."
+    "rootDir": ".",
+    "emitDeclarationOnly": false
   },
-  "include": ["src", "typings"],
+  "include": ["src", "typings", "./*.ts"],
   "references": [
     {
       "path": "../shared/tsconfig.build.json"
