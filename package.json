@@ -45,7 +45,10 @@
     "@prisma-model-types/shared": "workspace:../shared",
     "@prisma/client": "3.11.1",
     "@prisma/generator-helper": "3.11.1",
+    "@prisma/migrate": "3.11.1",
     "@prisma/sdk": "3.11.1",
+    "consola": "^2.15.3",
+    "execa": "^6.1.0",
     "mlly": "^0.4.3",
     "prisma": "3.11.1",
     "type-fest": "^2.12.1"
