@@ -37,6 +37,8 @@
     "format:prisma": "pnpm exec prisma format",
     "format:prisma:types": "eslint --fix src/types/types.ts && prettier --write src/types/types.ts",
     "format:prisma:base": "pnpm exec prisma format --schema prisma/base.prisma",
+    "db:push": "pnpm prisma db push --schema ./prisma/schema.prisma --skip-generate",
+    "db:push:reset": "pnpm prisma db push --schema ./prisma/schema.prisma --skip-generate --force-reset",
     "test": "echo \"Error: no test specified\"",
     "prepublishOnly": "nr build",
     "studio": "BROWSER=none prisma studio"
