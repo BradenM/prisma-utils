@@ -3,9 +3,12 @@
   "compilerOptions": {
     "composite": false,
     "rootDir": ".",
-    "emitDeclarationOnly": false
+    "emitDeclarationOnly": false,
+    "paths": {
+      "@prisma/client": ["./.prisma"]
+    }
   },
-  "include": ["src", "typings", "./*.ts"],
+  "include": ["src", "typings", "./*.ts", "./.prisma/*"],
   "references": [
     {
       "path": "../shared/tsconfig.build.json"
