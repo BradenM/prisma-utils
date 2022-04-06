@@ -5,7 +5,7 @@
     "rootDir": ".",
     "emitDeclarationOnly": false,
     "paths": {
-      "@prisma/client": ["./.prisma"]
+      "@prisma/client": ["./.prisma/index.d.ts"]
     }
   },
   "include": ["src", "typings", "./*.ts", "./.prisma/*"],
