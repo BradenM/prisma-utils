@@ -101,6 +101,9 @@ import pkg from '@prisma/client'
 export const ModelNames = pkg.Prisma.ModelName
 export type ModelName = Prisma.ModelName
 
+export const QueryModes = pkg.Prisma.QueryMode
+export type QueryMode = Prisma.QueryMode
+
 // Base interface matching any model delegate.
 export type ModelDelegate = { [key in Prisma.PrismaAction]?: (...args: any[]) => any }
 
