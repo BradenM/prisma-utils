@@ -1,26 +1,16 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.root.json",
   "compilerOptions": {
     "composite": false,
     "rootDir": ".",
     "emitDeclarationOnly": false,
-    "paths": {
-      "@prisma/client": ["./.prisma/index.d.ts"],
-      "@prisma-model-types/shared": ["../shared/src"],
-      "@prisma-model-types/viewmodels": ["../viewmodels/src"],
-      "@prisma-model-types/dataaccess": ["../dataaccess/src"],
-      "@prisma-model-types/mongodb-primary": ["../mongodb-primary/src"],
-      "@prisma-model-types/models": ["../models/src"],
-      "@prisma-model-types/schemas": ["../schemas/src"],
-      "@prisma-model-types/api-lib": ["../api-lib/src"],
-      "@prisma-model-types/api-lib/dist/*": ["../api-lib/src/*"],
-      "@prisma-model-types/clients/clever": ["../clients/clever/src"],
-      "@prisma-model-types/clients/domain": ["../clients/domain/src"],
-      "@prisma-model-types/clients": ["../clients/src"],
-      "@prisma-model-types/web": ["../web/src"],
-      "@prisma-model-types/server": ["../server/src"],
-      "@prisma-model-types/domain": ["../domain/src"]
-    }
+    "noEmit": true
   },
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["**/dist", "**/node_modules", "../../cloud", "**/packages"],
+  "references": [
+    {
+      "path": "../shared/tsconfig.build.json"
+    }
+  ],
+  "include": ["src", "typings", "*.ts", "test"]
 }
