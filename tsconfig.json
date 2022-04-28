@@ -4,7 +4,11 @@
     "composite": false,
     "rootDir": ".",
     "emitDeclarationOnly": false,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@prisma/client": ["./.prisma/index.d.ts"],
+      "@prisma-model-types/shared": ["../shared/src"]
+    }
   },
   "exclude": ["**/dist", "**/node_modules", "../../cloud", "**/packages"],
   "references": [
