@@ -42,14 +42,14 @@
   },
   "dependencies": {
     "@prisma-model-types/shared": "workspace:../shared",
-    "@prisma/client": "3.12.0",
-    "@prisma/generator-helper": "3.12.0",
-    "@prisma/migrate": "3.12.0",
-    "@prisma/sdk": "3.12.0",
+    "@prisma/client": "3.13.0",
+    "@prisma/generator-helper": "3.13.0",
+    "@prisma/migrate": "3.13.0",
+    "@prisma/sdk": "3.13.0",
     "consola": "^2.15.3",
     "execa": "^6.1.0",
     "mlly": "^0.4.3",
-    "prisma": "3.12.0",
+    "prisma": "3.13.0",
     "type-fest": "^2.12.2"
   }
 }
