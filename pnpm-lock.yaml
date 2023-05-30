@@ -23,6 +23,9 @@ importers:
         specifier: ^10.2.37
         version: 10.2.37
     devDependencies:
+      '@arroyodev-llc/projen.component.dir-env':
+        specifier: ^0.1.3
+        version: 0.1.3(projen@0.71.76)
       '@arroyodev-llc/projen.component.linting':
         specifier: ^0.1.12
         version: 0.1.12(projen@0.71.76)
@@ -106,6 +109,14 @@ packages:
       '@jridgewell/trace-mapping': 0.3.18
     dev: true
 
+  /@arroyodev-llc/projen.component.dir-env@0.1.3(projen@0.71.76):
+    resolution: {integrity: sha512-5A+1RAufIOXZtrMUYgFB5qpsH2idjI3IkOqJrDu8RnExr6UFPHPqgTHzdeRLO7/qorjrgh+mgYwU5CX8srWCtw==}
+    peerDependencies:
+      projen: ^0.71.65
+    dependencies:
+      projen: 0.71.76
+    dev: true
+
   /@arroyodev-llc/projen.component.linting@0.1.12(projen@0.71.76):
     resolution: {integrity: sha512-Qt6rGOPn1Cr1rk6m7JxEWEuuflr7EImFdBgKykSVNy58lBsExqz12alfIMelKTHm8D+BS/axVILRWgnCvWuUzA==}
     peerDependencies:
@@ -150,7 +161,7 @@ packages:
       projen: 0.71.76
     dev: true
 
-  /@arroyodev-llc/projen.component.typescript-source-file@0.1.13(projen@0.71.76):
+  /@arroyodev-llc/projen.component.typescript-source-file@0.1.13(@pnpm/logger@5.0.0)(projen@0.71.76):
     resolution: {integrity: sha512-cQKRt8A4p1AsbG7Jtn+RnCS3Hi0b5UfKck3KShURO/VvEnfzE96Fk3lvudtY6XbOqNSWIBh3JXrdtd/XlEvntQ==}
     peerDependencies:
       projen: ^0.71.74
@@ -159,24 +170,27 @@ packages:
       '@arroyodev-llc/utils.fs': 0.1.5
       '@arroyodev-llc/utils.projen': 0.1.12
       '@arroyodev-llc/utils.ts-ast': 0.1.2
-      '@aws-prototyping-sdk/nx-monorepo': 0.19.3(projen@0.71.76)
+      '@aws-prototyping-sdk/nx-monorepo': 0.18.18(@pnpm/logger@5.0.0)(projen@0.71.76)
       projen: 0.71.76
       ts-morph: 18.0.0
+    transitivePeerDependencies:
+      - '@pnpm/logger'
     dev: true
 
-  /@arroyodev-llc/projen.component.unbuild@0.1.13(projen@0.71.76):
+  /@arroyodev-llc/projen.component.unbuild@0.1.13(@pnpm/logger@5.0.0)(projen@0.71.76):
     resolution: {integrity: sha512-XlCYvRliCJqj2xo6CG7YSZDdCdudLYKaW9wmFUeYWNydgWHYa0EuRHeM0W9TrE609/TtOQx9HfkIrgeZR6BJyA==}
     peerDependencies:
       projen: ^0.71.74
     dependencies:
-      '@arroyodev-llc/projen.component.typescript-source-file': 0.1.13(projen@0.71.76)
+      '@arroyodev-llc/projen.component.typescript-source-file': 0.1.13(@pnpm/logger@5.0.0)(projen@0.71.76)
       '@arroyodev-llc/utils.projen': 0.1.12
       '@arroyodev-llc/utils.ts-ast': 0.1.2
-      '@aws-prototyping-sdk/nx-monorepo': 0.19.3(projen@0.71.76)
+      '@aws-prototyping-sdk/nx-monorepo': 0.18.18(@pnpm/logger@5.0.0)(projen@0.71.76)
       projen: 0.71.76
       ts-morph: 18.0.0
       unbuild: 1.2.1
     transitivePeerDependencies:
+      - '@pnpm/logger'
       - sass
       - supports-color
     dev: true
@@ -205,7 +219,7 @@ packages:
       '@arroyodev-llc/projen.component.linting': 0.1.12(projen@0.71.76)
       '@arroyodev-llc/projen.component.pnpm-workspace': 0.1.13(projen@0.71.76)
       '@arroyodev-llc/projen.component.release-please': 0.1.14(projen@0.71.76)
-      '@arroyodev-llc/projen.component.unbuild': 0.1.13(projen@0.71.76)
+      '@arroyodev-llc/projen.component.unbuild': 0.1.13(@pnpm/logger@5.0.0)(projen@0.71.76)
       '@arroyodev-llc/projen.project.nx-monorepo': 0.1.17(@pnpm/logger@5.0.0)(projen@0.71.76)
       '@arroyodev-llc/utils.projen': 0.1.12
       '@aws-prototyping-sdk/nx-monorepo': 0.18.18(@pnpm/logger@5.0.0)(projen@0.71.76)
@@ -267,19 +281,6 @@ packages:
       semver: 7.5.1
     transitivePeerDependencies:
       - '@pnpm/logger'
-    dev: true
-    bundledDependencies:
-      - '@pnpm/reviewing.dependencies-hierarchy'
-      - fs-extra
-      - semver
-
-  /@aws-prototyping-sdk/nx-monorepo@0.19.3(projen@0.71.76):
-    resolution: {integrity: sha512-hnIKJicf5Zxv88z13GWckWyf9boI6PzPZooUUMml35Lkh8Rsu3ANWlHEa5I0CEwEbyR8466gjU+HNQtxHC3icw==}
-    hasBin: true
-    peerDependencies:
-      projen: ^0.71.49
-    dependencies:
-      projen: 0.71.76
     dev: true
     bundledDependencies:
       - '@pnpm/reviewing.dependencies-hierarchy'
