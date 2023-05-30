@@ -1,7 +1,7 @@
+import { DirEnv } from '@arroyodev-llc/projen.component.dir-env'
 import { LintConfig } from '@arroyodev-llc/projen.component.linting'
 import { ToolVersions } from '@arroyodev-llc/projen.component.tool-versions'
 import { MonorepoProject } from '@arroyodev-llc/projen.project.nx-monorepo'
-import { DirEnv } from '@arroyodev-llc/projen.component.dir-env'
 
 const monorepo = new MonorepoProject({
 	defaultReleaseBranch: 'main',
@@ -17,9 +17,9 @@ const monorepo = new MonorepoProject({
 	name: 'prisma-utils',
 	authorName: 'Braden Mars',
 	authorOrganization: false,
-	authorUrl: 'https://github.com/prisma-utils',
+	authorUrl: 'https://github.com/BradenM/prisma-utils',
 	authorEmail: 'bradenmars@bradenmars.me',
-	pnpmVersion: 'pnpm',
+	pnpmVersion: '^8.6.0',
 })
 new LintConfig(monorepo)
 new ToolVersions(monorepo, {
