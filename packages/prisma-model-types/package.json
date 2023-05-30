@@ -25,6 +25,7 @@
     "organization": false
   },
   "devDependencies": {
+    "@types/fs-extra": "*",
     "@types/node": "^16",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
@@ -51,6 +52,7 @@
     "@prisma/migrate": "*",
     "@prisma/sdk": "*",
     "consola": "*",
+    "fs-extra": "*",
     "mlly": "*",
     "type-fest": "*"
   },

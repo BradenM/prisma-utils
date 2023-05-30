@@ -52,7 +52,9 @@ TypescriptProject.fromParent(monorepo, {
 		'consola',
 		'mlly',
 		'type-fest',
+		'fs-extra',
 	],
+	devDeps: ['@types/fs-extra'],
 })
 
 monorepo.synth()
