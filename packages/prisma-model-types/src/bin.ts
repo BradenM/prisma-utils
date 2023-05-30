@@ -1,3 +1,3 @@
-#!/usr/bin/env esmo
+#!/usr/bin/env tsx
 
 import './generator'
