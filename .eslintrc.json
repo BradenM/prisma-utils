@@ -14,12 +14,14 @@
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module",
-    "project": "./tsconfig.dev.json"
+    "project": "./tsconfig.dev.json",
+    "tsconfigRootDir": "."
   },
   "extends": [
     "plugin:import/typescript",
     "prettier",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking"
   ],
   "settings": {
     "import/parsers": {
@@ -29,12 +31,33 @@
       ]
     },
     "import/resolver": {
-      "node": {},
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".cjs",
+          ".ts",
+          ".tsx",
+          ".mts",
+          ".cts"
+        ]
+      },
       "typescript": {
         "project": "./tsconfig.dev.json",
         "alwaysTryTypes": true
       }
-    }
+    },
+    "import/extensions": [
+      ".js",
+      ".jsx",
+      ".mjs",
+      ".cjs",
+      ".ts",
+      ".tsx",
+      ".mts",
+      ".cts"
+    ]
   },
   "ignorePatterns": [
     "packages/**/*.*",
@@ -87,10 +110,10 @@
       "error"
     ],
     "key-spacing": [
-      "error"
+      "off"
     ],
     "no-multiple-empty-lines": [
-      "error"
+      "off"
     ],
     "@typescript-eslint/no-floating-promises": [
       "error"
@@ -102,7 +125,7 @@
       "error"
     ],
     "no-trailing-spaces": [
-      "error"
+      "off"
     ],
     "dot-notation": [
       "error"
@@ -125,9 +148,36 @@
           "method"
         ]
       }
+    ],
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "interface"
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "fixStyle": "inline-type-imports"
+      }
+    ],
+    "import/no-duplicates": [
+      "error",
+      {
+        "prefer-inline": true
+      }
     ]
   },
   "overrides": [
+    {
+      "files": [
+        "test/**"
+      ],
+      "rules": {
+        "@typescript-eslint/require-await": [
+          "warn"
+        ]
+      }
+    },
     {
       "files": [
         ".projenrc.ts"
