@@ -1,6 +1,7 @@
 import { DirEnv } from '@arroyodev-llc/projen.component.dir-env'
 import { LintConfig } from '@arroyodev-llc/projen.component.linting'
 import { ToolVersions } from '@arroyodev-llc/projen.component.tool-versions'
+import { UnBuild } from '@arroyodev-llc/projen.component.unbuild'
 import { MonorepoProject } from '@arroyodev-llc/projen.project.nx-monorepo'
 import { TypescriptProject } from '@arroyodev-llc/projen.project.typescript'
 
@@ -13,7 +14,7 @@ const monorepo = new MonorepoProject({
 		'@arroyodev-llc/projen.component.tool-versions',
 		'@arroyodev-llc/projen.component.dir-env',
 		'@arroyodev-llc/projen.component.linting',
-		'@arroyodev-llc/projen.component.pnpm-workspace',
+		'@arroyodev-llc/projen.component.unbuild',
 	],
 	name: 'prisma-utils',
 	authorName: 'Braden Mars',
@@ -35,7 +36,7 @@ new DirEnv(monorepo).buildDefaultEnvRc({
 	minDirEnvVersion: '2.32.3',
 })
 
-TypescriptProject.fromParent(monorepo, {
+const modelTypes = TypescriptProject.fromParent(monorepo, {
 	name: 'prisma-model-types',
 	authorName: 'Braden Mars',
 	authorOrganization: false,
@@ -49,12 +50,29 @@ TypescriptProject.fromParent(monorepo, {
 		'@prisma/internals',
 		'@prisma/migrate',
 		'@prisma/sdk',
-		'consola',
-		'mlly',
 		'type-fest',
 		'fs-extra',
+		'pathe',
+		'ts-morph',
+		'@arroyodev-llc/utils.ts-ast',
 	],
 	devDeps: ['@types/fs-extra'],
+	unbuild: false,
+	tsconfig: {
+		compilerOptions: {
+			rootDir: '.',
+		},
+	},
+})
+modelTypes.package.addField('name', 'prisma-model-types')
+modelTypes.package.addBin({
+	'prisma-model-types': 'dist/bin.mjs',
+})
+modelTypes.tasks.tryFind('post-compile')!.exec('unbuild')
+new UnBuild(modelTypes, { cjs: true }).addConfig({
+	name: 'prisma-model-types',
+	clean: true,
+	declaration: true,
 })
 
 monorepo.synth()

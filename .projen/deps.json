@@ -9,11 +9,11 @@
       "type": "build"
     },
     {
-      "name": "@arroyodev-llc/projen.component.pnpm-workspace",
+      "name": "@arroyodev-llc/projen.component.tool-versions",
       "type": "build"
     },
     {
-      "name": "@arroyodev-llc/projen.component.tool-versions",
+      "name": "@arroyodev-llc/projen.component.unbuild",
       "type": "build"
     },
     {

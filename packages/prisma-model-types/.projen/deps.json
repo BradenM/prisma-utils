@@ -76,6 +76,10 @@
       "type": "peer"
     },
     {
+      "name": "@arroyodev-llc/utils.ts-ast",
+      "type": "runtime"
+    },
+    {
       "name": "@prisma/client",
       "type": "runtime"
     },
@@ -96,15 +100,15 @@
       "type": "runtime"
     },
     {
-      "name": "consola",
-      "type": "runtime"
-    },
-    {
       "name": "fs-extra",
       "type": "runtime"
     },
     {
-      "name": "mlly",
+      "name": "pathe",
+      "type": "runtime"
+    },
+    {
+      "name": "ts-morph",
       "type": "runtime"
     },
     {

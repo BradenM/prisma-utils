@@ -98,8 +98,7 @@
       "description": "Runs after successful compilation",
       "steps": [
         {
-          "exec": "unbuild",
-          "name": "Unbuild"
+          "exec": "unbuild"
         }
       ]
     },

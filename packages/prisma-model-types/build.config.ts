@@ -3,16 +3,7 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-	name: '@arroyodev-llc/prisma-model-types',
-	declaration: true,
+	name: 'prisma-model-types',
 	clean: true,
-	entries: ['./src/index'],
-	rollup: {
-		emitCJS: true,
-		cjsBridge: true,
-		esbuild: {
-			treeShaking: true,
-			sourcemap: true,
-		},
-	},
+	declaration: true,
 })

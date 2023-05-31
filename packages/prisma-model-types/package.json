@@ -1,5 +1,8 @@
 {
-  "name": "@arroyodev-llc/prisma-model-types",
+  "name": "prisma-model-types",
+  "bin": {
+    "prisma-model-types": "dist/bin.mjs"
+  },
   "scripts": {
     "build": "pnpm exec projen build",
     "bump": "pnpm exec projen bump",
@@ -46,14 +49,15 @@
     "prisma": "*"
   },
   "dependencies": {
+    "@arroyodev-llc/utils.ts-ast": "*",
     "@prisma/client": "*",
     "@prisma/generator-helper": "*",
     "@prisma/internals": "*",
     "@prisma/migrate": "*",
     "@prisma/sdk": "*",
-    "consola": "*",
     "fs-extra": "*",
-    "mlly": "*",
+    "pathe": "*",
+    "ts-morph": "*",
     "type-fest": "*"
   },
   "pnpm": {},
