@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.4](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.3...prisma-model-types-v0.1.4) (2023-05-31)
+
+
+### Bug Fixes
+
+* **model-types:** Prisma client `pkg` import, fix `ModelNames` constant and type ([83e7db3](https://github.com/BradenM/prisma-utils/commit/83e7db30a56583f1f8bcd879701da95130119749))
+
 ## 0.1.3 (2023-05-31)
 
 
