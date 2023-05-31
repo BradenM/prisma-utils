@@ -51,7 +51,7 @@ const releasePlease = new ReleasePlease(monorepo).addPlugin({
 })
 releasePlease.configFile.addOverride(
 	'packages.packages/prisma-model-types.component',
-	'prisma-model-types'
+	undefined
 )
 monorepo.applyGithubJobNxEnv(
 	releasePlease.releaseWorkflow.workflow,
