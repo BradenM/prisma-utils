@@ -49,6 +49,10 @@ new DirEnv(monorepo).buildDefaultEnvRc({
 const releasePlease = new ReleasePlease(monorepo).addPlugin({
 	type: 'node-workspace',
 })
+releasePlease.configFile.addOverride(
+	'packages.packages/prisma-model-types.component',
+	'prisma-model-types'
+)
 monorepo.applyGithubJobNxEnv(
 	releasePlease.releaseWorkflow.workflow,
 	'release-please'

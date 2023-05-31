@@ -4,7 +4,7 @@
   "bump-patch-for-minor-pre-major": true,
   "packages": {
     "packages/prisma-model-types": {
-      "component": "@arroyodev-llc/prisma-model-types",
+      "component": "prisma-model-types",
       "release-type": "node"
     }
   },
