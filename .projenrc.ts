@@ -1,9 +1,15 @@
 import { DirEnv } from '@arroyodev-llc/projen.component.dir-env'
 import { LintConfig } from '@arroyodev-llc/projen.component.linting'
+import { ReleasePlease } from '@arroyodev-llc/projen.component.release-please'
 import { ToolVersions } from '@arroyodev-llc/projen.component.tool-versions'
 import { UnBuild } from '@arroyodev-llc/projen.component.unbuild'
 import { MonorepoProject } from '@arroyodev-llc/projen.project.nx-monorepo'
 import { TypescriptProject } from '@arroyodev-llc/projen.project.typescript'
+import { GithubCredentials } from 'projen/lib/github'
+
+const ghCreds = GithubCredentials.fromPersonalAccessToken({
+	secret: 'GH_PAT',
+})
 
 const monorepo = new MonorepoProject({
 	defaultReleaseBranch: 'main',
@@ -15,6 +21,7 @@ const monorepo = new MonorepoProject({
 		'@arroyodev-llc/projen.component.dir-env',
 		'@arroyodev-llc/projen.component.linting',
 		'@arroyodev-llc/projen.component.unbuild',
+		'@arroyodev-llc/projen.component.release-please',
 	],
 	name: 'prisma-utils',
 	authorName: 'Braden Mars',
@@ -22,6 +29,10 @@ const monorepo = new MonorepoProject({
 	authorUrl: 'https://github.com/BradenM/prisma-utils',
 	authorEmail: 'bradenmars@bradenmars.me',
 	pnpmVersion: '^8.6.0',
+	projenCredentials: ghCreds,
+	githubOptions: {
+		projenCredentials: ghCreds,
+	},
 })
 new LintConfig(monorepo)
 new ToolVersions(monorepo, {
@@ -35,6 +46,13 @@ new DirEnv(monorepo).buildDefaultEnvRc({
 	localEnvRc: '.envrc.local',
 	minDirEnvVersion: '2.32.3',
 })
+const releasePlease = new ReleasePlease(monorepo).addPlugin({
+	type: 'node-workspace',
+})
+monorepo.applyGithubJobNxEnv(
+	releasePlease.releaseWorkflow.workflow,
+	'release-please'
+)
 
 const modelTypes = TypescriptProject.fromParent(monorepo, {
 	name: 'prisma-model-types',

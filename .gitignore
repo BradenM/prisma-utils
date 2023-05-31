@@ -60,4 +60,7 @@ jspm_packages/
 !/.tool-versions
 !/.envrc
 .envrc.local
+!/release-please-config.json
+!/.release-please-manifest.json
+!/.github/workflows/release.yml
 !/pnpm-workspace.yaml

@@ -43,12 +43,6 @@ jobs:
       contents: read
     if: ${{ needs.upgrade.outputs.patch_created }}
     steps:
-      - name: Generate token
-        id: generate_token
-        uses: tibdex/github-app-token@021a2405c7f990db57f5eae5397423dcc554159c
-        with:
-          app_id: ${{ secrets.AD_BOT_APP_ID }}
-          private_key: ${{ secrets.AD_BOT_PRIVATE_KEY }}
       - name: Checkout
         uses: actions/checkout@v3
         with: {}
@@ -67,7 +61,7 @@ jobs:
         id: create-pr
         uses: peter-evans/create-pull-request@v4
         with:
-          token: ${{ steps.generate_token.outputs.token }}
+          token: ${{ secrets.GH_PAT }}
           commit-message: |-
             chore(deps): upgrade dependencies
 

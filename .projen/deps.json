@@ -9,6 +9,10 @@
       "type": "build"
     },
     {
+      "name": "@arroyodev-llc/projen.component.release-please",
+      "type": "build"
+    },
+    {
       "name": "@arroyodev-llc/projen.component.tool-versions",
       "type": "build"
     },

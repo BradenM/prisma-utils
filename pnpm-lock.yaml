@@ -29,6 +29,9 @@ importers:
       '@arroyodev-llc/projen.component.linting':
         specifier: ^0.1.12
         version: 0.1.12(projen@0.71.76)
+      '@arroyodev-llc/projen.component.release-please':
+        specifier: ^0.1.14
+        version: 0.1.14(projen@0.71.76)
       '@arroyodev-llc/projen.component.tool-versions':
         specifier: ^0.1.9
         version: 0.1.9(projen@0.71.76)
