@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.4...prisma-model-types-v0.1.5) (2023-05-31)
+
+
+### Bug Fixes
+
+* **model-types:** Generate string enum values for `Model` enum ([0c019fd](https://github.com/BradenM/prisma-utils/commit/0c019fd2e7122b3033fd1defb7c05ef3923f3174))
+
 ## [0.1.4](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.3...prisma-model-types-v0.1.4) (2023-05-31)
 
 
