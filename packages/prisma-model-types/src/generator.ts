@@ -210,11 +210,7 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 	const project = new Project({
 		skipAddingFilesFromTsConfig: true,
 	})
-	const source = project.createSourceFile(filePath, ``, { overwrite: true })
-	const module = source.addModule({
-		name: `'prisma-model-types/model-types'`,
-		hasDeclareKeyword: true,
-	})
+	const module = project.createSourceFile(filePath, ``, { overwrite: true })
 
 	// Workaround interface for namespace issue.
 	const modelNames = models
@@ -394,7 +390,7 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 		namedExports: typeImports,
 	})
 
-	return source
+	return module
 }
 
 export const generate = () => {
