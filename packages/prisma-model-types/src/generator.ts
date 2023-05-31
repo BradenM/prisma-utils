@@ -15,6 +15,7 @@ import {
 	Project,
 	type PropertySignatureStructure,
 	type SourceFile,
+	VariableDeclarationKind,
 } from 'ts-morph'
 
 /**
@@ -175,9 +176,7 @@ export const validatorFor = <
 export type PayloadFor<
 	ModelT extends ModelNameOrModel,
 	T extends ArgsFor<ModelT> | undefined | null | boolean = undefined,
-	// _Model = NameForModel<ModelT>
 	_Model extends string = NameForModel<ModelT>
-	// _Model extends string = NameForModel<ModelT> extends string ? NameForModel<ModelT> : NameForModel<ModelT>
 > = IsAnyModelOrModelName<ModelT> extends 1
 	? ModelTypes.ModelPayloadParams['Payload']
 	: _Model extends keyof PayloadParamsByModel<any>
@@ -223,7 +222,7 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 	// Imports
 	module.addImportDeclarations([
 		{
-			namedImports: ['KeyFor', 'AnyModel', 'AnyArgs', 'MaybeAnyArgs'],
+			namedImports: ['KeyFor', 'AnyModel', 'MaybeAnyArgs'],
 			moduleSpecifier: 'prisma-model-types',
 			isTypeOnly: true,
 		},
@@ -231,6 +230,10 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 			namedImports: typeImports,
 			moduleSpecifier: '@prisma/client',
 			isTypeOnly: true,
+		},
+		{
+			defaultImport: 'pkg',
+			moduleSpecifier: '@prisma/client',
 		},
 	])
 
@@ -240,21 +243,18 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 			declarations: [
 				{
 					name: 'ModelNames',
-					initializer: `Prisma.ModelNames`,
+					initializer: `pkg.Prisma.ModelName`,
 				},
 			],
 			isExported: true,
-		},
-		{
-			isExported: true,
-			declarations: [
-				{
-					name: 'ModelName',
-					type: 'Prisma.ModelName',
-				},
-			],
+			declarationKind: VariableDeclarationKind.Const,
 		},
 	])
+	module.addTypeAlias({
+		isExported: true,
+		name: 'ModelName',
+		type: 'Prisma.ModelName',
+	})
 
 	// ModelDelegate
 	module.addTypeAlias({
