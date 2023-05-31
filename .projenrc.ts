@@ -53,6 +53,10 @@ releasePlease.configFile.addOverride(
 	'packages.packages/prisma-model-types.component',
 	undefined
 )
+releasePlease.configFile.addOverride(
+	'bootstrap-sha',
+	'cff31850eaae3dfe19776ab64ab584e22074fdb2'
+)
 monorepo.applyGithubJobNxEnv(
 	releasePlease.releaseWorkflow.workflow,
 	'release-please'

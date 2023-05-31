@@ -71,5 +71,6 @@
     {
       "type": "node-workspace"
     }
-  ]
+  ],
+  "bootstrap-sha": "cff31850eaae3dfe19776ab64ab584e22074fdb2"
 }
