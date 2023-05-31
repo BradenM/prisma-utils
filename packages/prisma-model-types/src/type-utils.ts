@@ -1,3 +1,6 @@
+/**
+ * Remove never props.
+ */
 export type RemoveNeverProps<T> = {
 	[K in Exclude<
 		keyof T,
@@ -7,6 +10,9 @@ export type RemoveNeverProps<T> = {
 	>]: T[K]
 }
 
+/**
+ * Test if object includes given property.
+ */
 export type IncludeProp<T extends object, E> = RemoveNeverProps<{
 	[K in keyof T]: T[K] extends E ? T[K] : never
 }>
@@ -19,15 +25,24 @@ export type KeyFor<
 	ValueT extends ObjectT[keyof ObjectT]
 > = keyof IncludeProp<ObjectT, ValueT>
 
+/**
+ * Generic model match.
+ */
 export interface AnyModel {
 	id?: string
 
 	[key: string]: any
 }
 
+/**
+ * Generic payload args match.
+ */
 export interface AnyArgs {
 	select?: any
 	include?: any
 }
 
+/**
+ * Conditional args match.
+ */
 export type MaybeAnyArgs = boolean | AnyArgs | null | undefined
