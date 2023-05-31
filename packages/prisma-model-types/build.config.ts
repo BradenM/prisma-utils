@@ -6,4 +6,5 @@ export default defineBuildConfig({
 	name: 'prisma-model-types',
 	clean: true,
 	declaration: true,
+	failOnWarn: false,
 })

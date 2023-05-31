@@ -96,10 +96,15 @@ modelTypes.package.addBin({
 	'prisma-model-types': 'dist/bin.mjs',
 })
 modelTypes.tasks.tryFind('post-compile')!.exec('unbuild')
+modelTypes.package.file.addOverride(`exports.\\./prisma-model-types`, {
+	types: './prisma-model-types.d.ts',
+})
 new UnBuild(modelTypes, { cjs: true }).addConfig({
 	name: 'prisma-model-types',
 	clean: true,
 	declaration: true,
+	// prisma-model-types won't be available.
+	failOnWarn: false,
 })
 
 monorepo.synth()
