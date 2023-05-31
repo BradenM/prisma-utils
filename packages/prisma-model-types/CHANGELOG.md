@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.5...prisma-model-types-v0.1.6) (2023-05-31)
+
+
+### Bug Fixes
+
+* **model-types:** Add types export for prisma-model-types ([057bae9](https://github.com/BradenM/prisma-utils/commit/057bae9de4893048edd0e0583771d7e9a6a5e0e0))
+
 ## [0.1.5](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.4...prisma-model-types-v0.1.5) (2023-05-31)
 
 
