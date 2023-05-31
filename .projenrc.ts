@@ -51,7 +51,7 @@ const releasePlease = new ReleasePlease(monorepo).addPlugin({
 })
 releasePlease.configFile.addOverride(
 	'packages.packages/prisma-model-types.component',
-	undefined
+	'prisma-model-types'
 )
 releasePlease.configFile.addOverride(
 	'bootstrap-sha',
