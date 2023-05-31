@@ -366,7 +366,7 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 		isExported: true,
 		members: modelNames.map((name) => ({
 			name,
-			type: `"${name}"`,
+			initializer: `"${name}"`,
 		})),
 	})
 
