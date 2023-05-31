@@ -1,3 +1,12 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
+import { generate } from './generator'
 
-import './generator'
+// eslint-disable-next-line @typescript-eslint/require-await
+async function main() {
+	generate()
+}
+
+main().catch((error) => {
+	console.error(error)
+	process.exit(1)
+})

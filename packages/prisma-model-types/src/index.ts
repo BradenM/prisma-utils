@@ -1,5 +1,2 @@
-export class Hello {
-	public sayHello() {
-		return 'hello, world!'
-	}
-}
+export * from './generator'
+export * from './type-utils'
