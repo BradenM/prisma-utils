@@ -53,6 +53,7 @@ monorepo.applyGithubJobNxEnv(
 	releasePlease.releaseWorkflow.workflow,
 	'release-please'
 )
+monorepo.npmrc.addConfig('//registry.npmjs.org/:_authToken', '${NPM_TOKEN}')
 
 const modelTypes = TypescriptProject.fromParent(monorepo, {
 	name: 'prisma-model-types',
