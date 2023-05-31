@@ -380,7 +380,7 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 			' * @see https://stackoverflow.com/a/53431302/2666223',
 			' */\n',
 		],
-		properties: modelNames.map((name) => ({ name, type: `"${name}"` })),
+		properties: modelNames.map((name) => ({ name, type: name })),
 	})
 
 	// Helpers
