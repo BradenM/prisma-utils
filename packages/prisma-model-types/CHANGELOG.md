@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/BradenM/prisma-utils/compare/@arroyodev-llc/prisma-model-types-v0.1.1...@arroyodev-llc/prisma-model-types-v0.1.2) (2023-05-31)
+
+
+### Bug Fixes
+
+* **model-types:** Do not create ambient module ([a3fa6a4](https://github.com/BradenM/prisma-utils/commit/a3fa6a4393451181045be2b771dd9ac71a766860))
+
 ## [0.1.1](https://github.com/BradenM/prisma-utils/compare/@arroyodev-llc/prisma-model-types-v0.1.0...@arroyodev-llc/prisma-model-types-v0.1.1) (2023-05-31)
 
 
