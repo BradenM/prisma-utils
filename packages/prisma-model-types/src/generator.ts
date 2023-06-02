@@ -370,7 +370,7 @@ const build = ({
 	module.addInterface({
 		name: 'PayloadParamsByModel',
 		leadingTrivia: '// All model params keyed by model.',
-		typeParameters: [{ name: 'T' }],
+		typeParameters: [{ name: 'T', constraint: 'MaybeAnyArgs' }],
 		properties: modelNames.map((name) => ({
 			name,
 			type: `${name}PayloadParams<T>`,
