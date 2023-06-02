@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.1.13](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.12...prisma-model-types-v0.1.13) (2023-06-02)
+
+
+### Bug Fixes
+
+* **model-types:** Correct `PayloadParamsByModel` constraints ([f0e8908](https://github.com/BradenM/prisma-utils/commit/f0e8908444d26ede2b5dae94b9cab59d3b8dd690))
+* **model-types:** Correct model payload params payload type ([ddcc431](https://github.com/BradenM/prisma-utils/commit/ddcc431f69db96a78c3a708259503b6b470b6ae5))
+
 ## [0.1.12](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.11...prisma-model-types-v0.1.12) (2023-06-02)
 
 
