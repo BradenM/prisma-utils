@@ -166,10 +166,10 @@ export type DelegateFor<T extends ModelNameOrModel> = PrismaTypeFor<
 	'Delegate'
 >
 
-export const validatorFor = <
-	ModelT extends ModelNameOrModel,
-	_ModelArgs = ArgsFor<ModelT>
->() => pkg.Prisma.validator<_ModelArgs>()
+// export const validatorFor = <
+// 	ModelT extends ModelNameOrModel,
+// 	_ModelArgs = ArgsFor<ModelT>
+// >() => pkg.Prisma.validator<_ModelArgs>()
 
 /**
  * Resolve Prisma args/action/input/output/etc. type for given model.
