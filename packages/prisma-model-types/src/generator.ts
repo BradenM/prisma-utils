@@ -412,6 +412,7 @@ const build = ({
 
 	module.addExportDeclaration({
 		namedExports: typeImports,
+		isTypeOnly: true,
 	})
 
 	return module
