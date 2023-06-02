@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.12](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.11...prisma-model-types-v0.1.12) (2023-06-02)
+
+
+### Bug Fixes
+
+* **model-types:** Ensure type re-exports are explicit type-only exports ([a263a4a](https://github.com/BradenM/prisma-utils/commit/a263a4ad5c398e975ecdf18336a3d5b67345633f))
+
 ## [0.1.11](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.10...prisma-model-types-v0.1.11) (2023-06-02)
 
 
