@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.10](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.9...prisma-model-types-v0.1.10) (2023-06-02)
+
+
+### Bug Fixes
+
+* **model-types:** Remove old `ModelTypes` namespace ([077ece9](https://github.com/BradenM/prisma-utils/commit/077ece9e724b2c42856e8b0ad3fb499daaa15981))
+
 ## [0.1.9](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.8...prisma-model-types-v0.1.9) (2023-06-02)
 
 
