@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.14](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.13...prisma-model-types-v0.1.14) (2023-06-02)
+
+
+### Bug Fixes
+
+* **model-types:** Remove `validatorFor` for now ([4337f42](https://github.com/BradenM/prisma-utils/commit/4337f428d26230d86ad0e298f34dde5b369352ea))
+
 ## [0.1.13](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.12...prisma-model-types-v0.1.13) (2023-06-02)
 
 
