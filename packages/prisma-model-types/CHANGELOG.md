@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.8...prisma-model-types-v0.1.9) (2023-06-02)
+
+
+### Bug Fixes
+
+* **model-types:** Do not render duplicative imports ([c8e7b99](https://github.com/BradenM/prisma-utils/commit/c8e7b990af788919b64bcc4253a137a064451bd7))
+
 ## [0.1.8](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.7...prisma-model-types-v0.1.8) (2023-06-02)
 
 
