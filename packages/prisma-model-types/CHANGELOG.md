@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.7](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.6...prisma-model-types-v0.1.7) (2023-06-02)
+
+
+### Features
+
+* **model-types:** Support `prismaClientImport` config parameter ([b4a6926](https://github.com/BradenM/prisma-utils/commit/b4a6926f9e66a3d42153de097d7cee02d67bbfa0))
+
 ## [0.1.6](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.5...prisma-model-types-v0.1.6) (2023-05-31)
 
 
