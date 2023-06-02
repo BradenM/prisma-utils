@@ -362,7 +362,7 @@ const build = ({
 			},
 			{
 				name: 'Payload',
-				type: `${name}PayloadParams<T>`,
+				type: `Prisma.${name}GetPayload<T>`,
 			},
 		],
 	}))
