@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.11](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.10...prisma-model-types-v0.1.11) (2023-06-02)
+
+
+### Bug Fixes
+
+* **model-types:** Add `ModelPayloadParams` base and `PayloadParamsByModel` interfaces ([c9ec041](https://github.com/BradenM/prisma-utils/commit/c9ec0419fa3d9b8badfc4020ed7f3432ab827eda))
+
 ## [0.1.10](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.9...prisma-model-types-v0.1.10) (2023-06-02)
 
 
