@@ -46,9 +46,7 @@ new DirEnv(monorepo).buildDefaultEnvRc({
 	localEnvRc: '.envrc.local',
 	minDirEnvVersion: '2.32.3',
 })
-const releasePlease = new ReleasePlease(monorepo).addPlugin({
-	type: 'node-workspace',
-})
+const releasePlease = new ReleasePlease(monorepo)
 releasePlease.configFile.addOverride(
 	'packages.packages/prisma-model-types.component',
 	'prisma-model-types'
