@@ -26,6 +26,7 @@ const { logger } = sdk
 
 interface BuildOptions {
 	filePath: string
+	prismaClientImport: string
 	models: DMMF.Model[]
 	enums: DMMF.DatamodelEnum[]
 }
@@ -205,7 +206,12 @@ export type PayloadFor<
  * @param models DMMF models.
  * @param enums DMMF enums.
  */
-const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
+const build = ({
+	filePath,
+	models,
+	enums,
+	prismaClientImport,
+}: BuildOptions): SourceFile => {
 	const project = new Project({
 		skipAddingFilesFromTsConfig: true,
 	})
@@ -228,12 +234,12 @@ const build = ({ filePath, models, enums }: BuildOptions): SourceFile => {
 		},
 		{
 			namedImports: typeImports,
-			moduleSpecifier: '@prisma/client',
+			moduleSpecifier: prismaClientImport,
 			isTypeOnly: true,
 		},
 		{
 			defaultImport: 'pkg',
-			moduleSpecifier: '@prisma/client',
+			moduleSpecifier: prismaClientImport,
 		},
 	])
 
@@ -407,9 +413,15 @@ export const generate = () => {
 				requiresGenerators: ['prisma-client-js'],
 			}
 		},
-		async onGenerate(options: GeneratorOptions): Promise<any> {
+		async onGenerate(
+			options: GeneratorOptions & {
+				generator: { config: { prismaClientImport?: string } }
+			}
+		): Promise<any> {
+			const prismaClientImport =
+				options.generator.config.prismaClientImport ?? '@prisma/client'
 			const outPath = path.join(
-				options.generator.output!.value! ?? pkgPath,
+				options.generator.output?.value ?? pkgPath,
 				'prisma-model-types.d.ts'
 			)
 			logger.info(`Writing to ${outPath} (pkgPath: ${pkgPath})`)
@@ -417,6 +429,7 @@ export const generate = () => {
 				filePath: outPath,
 				models: options.dmmf.datamodel.models,
 				enums: options.dmmf.datamodel.enums,
+				prismaClientImport,
 			})
 			await fse.outputFile(outPath, source.getFullText())
 		},
