@@ -415,14 +415,16 @@ export const generate = () => {
 		},
 		async onGenerate(
 			options: GeneratorOptions & {
-				generator: { config: { prismaClientImport?: string } }
+				generator: {
+					config: { prismaClientImport?: string; fileName?: string }
+				}
 			}
-		): Promise<any> {
+		): Promise<void> {
 			const prismaClientImport =
 				options.generator.config.prismaClientImport ?? '@prisma/client'
 			const outPath = path.join(
 				options.generator.output?.value ?? pkgPath,
-				'prisma-model-types.d.ts'
+				options.generator.config.fileName ?? 'prisma-model-types.ts'
 			)
 			logger.info(`Writing to ${outPath} (pkgPath: ${pkgPath})`)
 			const source = build({

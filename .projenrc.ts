@@ -97,7 +97,7 @@ modelTypes.package.addBin({
 })
 modelTypes.tasks.tryFind('post-compile')!.exec('unbuild')
 modelTypes.package.file.addOverride(`exports.\\./prisma-model-types`, {
-	types: './prisma-model-types.d.ts',
+	types: './prisma-model-types.ts',
 })
 new UnBuild(modelTypes, { cjs: true }).addConfig({
 	name: 'prisma-model-types',

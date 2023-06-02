@@ -78,7 +78,7 @@
       "require": "./dist/index.cjs"
     },
     "./prisma-model-types": {
-      "types": "./prisma-model-types.d.ts"
+      "types": "./prisma-model-types.ts"
     }
   },
   "files": [
