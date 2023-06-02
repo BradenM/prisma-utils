@@ -102,10 +102,10 @@ export type ModelParamsFor<
 	ModelT,
 	_Model = NameForModel<ModelT>
 > = IsAnyModelOrModelName<ModelT> extends 1
-	? ModelTypes.ModelParams
+	? ModelParams
 	: _Model extends keyof ParamsByModel
 		? ParamsByModel[_Model]
-		: ModelTypes.ModelParams
+		: ModelParams
 
 export type CreateFor<T extends ModelNameOrModel> = PrismaTypeFor<
 	T,
@@ -179,10 +179,10 @@ export type PayloadFor<
 	T extends ArgsFor<ModelT> | undefined | null | boolean = undefined,
 	_Model extends string = NameForModel<ModelT>
 > = IsAnyModelOrModelName<ModelT> extends 1
-	? ModelTypes.ModelPayloadParams['Payload']
+	? ModelPayloadParams['Payload']
 	: _Model extends keyof PayloadParamsByModel<any>
 		? PayloadParamsByModel<T>[_Model]['Payload']
-		: ModelTypes.ModelPayloadParams['Payload']
+		: ModelPayloadParams['Payload']
 	`
 
 /**
