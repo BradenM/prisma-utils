@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.8](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.7...prisma-model-types-v0.1.8) (2023-06-02)
+
+
+### Features
+
+* **model-types:** Add `fileName` paramater, update default ([a63cb55](https://github.com/BradenM/prisma-utils/commit/a63cb5510d1ea31d2893bc64e31de39d0009e533))
+
 ## [0.1.7](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.6...prisma-model-types-v0.1.7) (2023-06-02)
 
 
