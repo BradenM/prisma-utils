@@ -332,6 +332,16 @@ const build = ({
 		})),
 	})
 
+	// Model Payload Base
+	module.addInterface({
+		name: 'ModelPayloadParams',
+		leadingTrivia: '// Base interface for model payload params.',
+		properties: [
+			{ name: 'model', type: 'ModelName' },
+			{ name: 'Payload', type: 'any' },
+		],
+	})
+
 	// payload
 	const payloadInterfaces = modelNames.map<
 		OptionalKind<InterfaceDeclarationStructure>
@@ -357,6 +367,15 @@ const build = ({
 		],
 	}))
 	module.addInterfaces(payloadInterfaces)
+	module.addInterface({
+		name: 'PayloadParamsByModel',
+		leadingTrivia: '// All model params keyed by model.',
+		typeParameters: [{ name: 'T' }],
+		properties: modelNames.map((name) => ({
+			name,
+			type: `${name}PayloadParams<T>`,
+		})),
+	})
 
 	// Model enum.
 	module.addEnum({
