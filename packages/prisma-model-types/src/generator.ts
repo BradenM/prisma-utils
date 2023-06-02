@@ -233,11 +233,10 @@ const build = ({
 			isTypeOnly: true,
 		},
 		{
-			namedImports: typeImports,
-			moduleSpecifier: prismaClientImport,
-			isTypeOnly: true,
-		},
-		{
+			namedImports: typeImports.map((importName) => ({
+				name: importName,
+				isTypeOnly: true,
+			})),
 			defaultImport: 'pkg',
 			moduleSpecifier: prismaClientImport,
 		},
