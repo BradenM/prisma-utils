@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.15](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.14...prisma-model-types-v0.1.15) (2023-06-03)
+
+
+### Bug Fixes
+
+* **model-types:** Prisma client namespace import, enum exports ([7557681](https://github.com/BradenM/prisma-utils/commit/75576813d5ee1b7d679214eed4ca96d2d2e91bfc))
+
 ## [0.1.14](https://github.com/BradenM/prisma-utils/compare/prisma-model-types-v0.1.13...prisma-model-types-v0.1.14) (2023-06-02)
 
 
