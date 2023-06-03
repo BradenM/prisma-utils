@@ -223,7 +223,7 @@ const build = ({
 		.sort((a, b) => b.length - a.length)
 	const enumNames = enums.map(({ name }) => name)
 
-	const typeImports = ['Prisma', 'PrismaClient', ...enumNames, ...modelNames]
+	const typeImports = ['Prisma', 'PrismaClient', ...modelNames]
 
 	// Imports
 	module.addImportDeclarations([
@@ -233,11 +233,19 @@ const build = ({
 			isTypeOnly: true,
 		},
 		{
-			namedImports: typeImports.map((importName) => ({
-				name: importName,
-				isTypeOnly: true,
-			})),
-			defaultImport: 'pkg',
+			namespaceImport: 'pkg',
+			moduleSpecifier: prismaClientImport,
+		},
+		{
+			namedImports: [
+				...enumNames.map((enumName) => ({
+					name: enumName,
+				})),
+				...typeImports.map((importName) => ({
+					name: importName,
+					isTypeOnly: true,
+				})),
+			],
 			moduleSpecifier: prismaClientImport,
 		},
 	])
@@ -410,10 +418,15 @@ const build = ({
 	// Helpers
 	module.addStatements([(writer) => writer.write(HELPERS)])
 
-	module.addExportDeclaration({
-		namedExports: typeImports,
-		isTypeOnly: true,
-	})
+	module.addExportDeclarations([
+		{
+			namedExports: typeImports,
+			isTypeOnly: true,
+		},
+		{
+			namedExports: enumNames,
+		},
+	])
 
 	return module
 }
