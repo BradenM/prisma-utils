@@ -46,9 +46,9 @@ jspm_packages/
 /dist
 /dist/
 !/.eslintrc.json
-!/.syncpackrc.json
 !/nx.json
 !/.nxignore
+!/.syncpackrc.json
 .idea
 .idea/**
 !/.ncurc.json
